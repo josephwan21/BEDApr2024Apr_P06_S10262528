@@ -1,8 +1,6 @@
 const Joi = require("joi");
 
 const validateBook = (req, res, next) => {
-    console.log("The incoming request is:", req.method);
-    
     const schema = Joi.object({
     title: Joi.string().min(3).max(50).required(),
     author: Joi.string().min(3).max(50).required(),
