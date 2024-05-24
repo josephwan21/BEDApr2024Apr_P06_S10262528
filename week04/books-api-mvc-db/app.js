@@ -2,6 +2,7 @@ const express = require("express");
 const sql = require("mssql"); // Assuming you've installed mssql
 const dbConfig = require("./dbConfig");
 const booksController = require("./controllers/booksController");
+const usersController = require("./controllers/usersController");
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable or default port
@@ -20,6 +21,16 @@ app.get("/books/:id", booksController.getBookById);
 app.post("/books", validateBook, booksController.createBook); // POST for creating books (can handle JSON data)
 app.put("/books/:id", validateBook, booksController.updateBook);
 app.delete("/books/:id", validateBook, booksController.deleteBook);
+
+//Routes for Users
+app.get("/users", usersController.getAllUsers);
+app.get("/users-count", usersController.getUserCount);
+app.get("/users/search", usersController.searchUsers);
+app.get("/users/with-books", usersController.getUsersWithBooks);
+app.get("/users/:id", usersController.getUserById);
+app.post("/users", usersController.createUser); 
+app.put("/users/:id", usersController.updateUser);
+app.delete("/users/:id", usersController.deleteUser);
 
 
 
